@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kukirin | Comparateur Premium</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #fafaf9;
+      color: #1c1917;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --orange-50: #fff7ed;
+      --orange-100: #ffedd5;
+      --orange-200: #fed7aa;
+      --orange-300: #fdba74;
+      --orange-400: #fb923c;
+      --orange-500: #f97316;
+      --orange-600: #ea580c;
+      --orange-700: #c2410c;
+      --orange-800: #9a3412;
+      --stone-50: #fafaf9;
+      --stone-100: #f5f5f4;
+      --stone-200: #e7e5e4;
+      --stone-300: #d6d3d1;
+      --stone-400: #a8a29e;
+      --stone-500: #78716c;
+      --stone-600: #57534e;
+      --stone-700: #44403c;
+      --stone-800: #292524;
+      --stone-900: #1c1917;
+      --white: #ffffff;
+      --black: #0c0a09;
+      --radius-2xl: 2rem;
+      --radius-xl: 1.5rem;
+      --radius-lg: 1rem;
+      --radius-md: 0.75rem;
+      --radius-sm: 0.5rem;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.02);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      --shadow-glow: 0 0 30px rgba(249,115,22,0.2);
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+    }
+
+    /* Header premium */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--stone-200);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 6px rgba(249,115,22,0.3));
+      transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.3px;
+      color: var(--stone-900);
+    }
+
+    .logo-text span {
+      color: var(--orange-500);
+      font-weight: 800;
+    }
+
+    .badge-selection {
+      background: var(--stone-100);
+      padding: 0.6rem 1.5rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--stone-700);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-selection strong {
+      color: var(--orange-600);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* Section titre */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 700;
+      color: var(--stone-500);
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-text {
+      background: transparent;
+      border: none;
+      color: var(--orange-600);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2rem;
+      transition: 0.2s;
+    }
+
+    .btn-text:hover {
+      background: var(--orange-50);
+    }
+
+    /* Grille de sélection style cartes */
+    .scooter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .scooter-card {
+      background: var(--white);
+      border: 2px solid var(--stone-200);
+      border-radius: var(--radius-xl);
+      padding: 1.2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .scooter-card:hover {
+      border-color: var(--orange-300);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      background: var(--orange-50);
+    }
+
+    .scooter-card.selected {
+      border-color: var(--orange-500);
+      background: linear-gradient(135deg, #fff7ed, #ffffff);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .scooter-card .card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--stone-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: 0.2s;
+    }
+
+    .scooter-card.selected .card-icon {
+      background: var(--orange-500);
+      color: white;
+    }
+
+    .scooter-card .model-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--stone-800);
+      text-align: center;
+    }
+
+    .scooter-card .check-circle {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--stone-300);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: transparent;
+      transition: 0.2s;
+    }
+
+    .scooter-card.selected .check-circle {
+      background: var(--orange-500);
+      border-color: var(--orange-500);
+      color: white;
+    }
+
+    /* Barre d'action */
+    .action-bar {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.8rem;
+      border-radius: 3rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--white);
+      border: 1.5px solid var(--stone-200);
+      color: var(--stone-700);
+    }
+
+    .btn-primary {
+      background: var(--orange-500);
+      border-color: var(--orange-500);
+      color: white;
+      box-shadow: 0 4px 10px rgba(249,115,22,0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-600);
+      border-color: var(--orange-600);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(249,115,22,0.3);
+    }
+
+    .btn-outline:hover {
+      background: var(--stone-50);
+      border-color: var(--stone-400);
+    }
+
+    /* Table */
+    .table-wrapper {
+      background: var(--white);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--stone-200);
+      overflow: hidden;
+    }
+
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--stone-100);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .category-filters {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tag {
+      background: var(--stone-50);
+      border: 1px solid var(--stone-200);
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--stone-600);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .filter-tag.active {
+      background: var(--orange-500);
+      border-color: var(--orange-500);
+      color: white;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--stone-50);
+      border: 1px solid var(--stone-200);
+      border-radius: 2.5rem;
+      padding: 0.4rem 1rem;
+      gap: 0.4rem;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 0.85rem;
+      width: 200px;
+    }
+
+    .scroll-area {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th {
+      text-align: left;
+      padding: 1rem 1.4rem;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--stone-500);
+      background: #fafaf9;
+      border-bottom: 1px solid var(--stone-200);
+      position: sticky;
+      top: 0;
+    }
+
+    td {
+      padding: 1rem 1.4rem;
+      border-bottom: 1px solid var(--stone-100);
+      font-size: 0.9rem;
+      color: var(--stone-700);
+    }
+
+    .criterion-col {
+      font-weight: 500;
+      color: var(--stone-800);
+      background: #fdfdfc;
+      position: sticky;
+      left: 0;
+      z-index: 2;
+    }
+
+    tr:hover td {
+      background: #fffbf7;
+    }
+
+    .empty-placeholder {
+      text-align: center;
+      padding: 5rem;
+      color: var(--stone-400);
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header avec logo -->
+    <header class="header">
+      <div class="logo">
+        <img src="./kukirin.png" alt="Kukirin Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-text" style="display: none;">⚡ Kukirin<span>Comparator</span></div>
+        <div class="logo-text">Kukirin<span>Comparator</span></div>
+      </div>
+      <div class="badge-selection">
+        <span>🛴</span> <strong id="selectedCount">0</strong> / <span id="totalModels">0</span> modèles
+      </div>
+    </header>
+
+    <div class="section-header">
+      <div class="section-title">Sélectionnez les trottinettes</div>
+      <div class="quick-actions">
+        <button class="btn-text" id="selectAllBtn">Tout sélectionner</button>
+        <button class="btn-text" id="clearBtn">Effacer</button>
+      </div>
+    </div>
+
+    <div id="scooterGrid" class="scooter-grid"></div>
+
+    <div class="action-bar">
+      <button id="compareBtn" class="btn btn-primary">🔍 Lancer la comparaison</button>
+      <button id="resetBtn" class="btn btn-outline">↺ Réinitialiser</button>
+    </div>
+
+    <div class="table-wrapper" id="tableSection">
+      <div class="table-toolbar">
+        <div class="category-filters" id="categoryFilters"></div>
+        <div class="search-box">
+          <span>🔎</span>
+          <input type="text" placeholder="Filtrer les critères..." id="searchInput">
+        </div>
+      </div>
+      <div class="scroll-area">
+        <table id="comparisonTable">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-placeholder" style="display: none;">
+        🛴 Sélectionnez des modèles pour afficher la comparaison détaillée.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (async () => {
+      const response = await fetch('./kukirin.json');
+      const data = await response.json();
+      const criteria = data.criteres;
+      const scooters = data.trottinettes;
+      const modelNames = Object.keys(scooters);
+      
+      document.getElementById('totalModels').textContent = modelNames.length;
+      let selectedModels = new Set();
+
+      const gridEl = document.getElementById('scooterGrid');
+      
+      function renderGrid() {
+        gridEl.innerHTML = '';
+        modelNames.forEach(name => {
+          const card = document.createElement('div');
+          card.className = `scooter-card ${selectedModels.has(name) ? 'selected' : ''}`;
+          card.innerHTML = `
+            <div class="check-circle">✓</div>
+            <div class="card-icon">🛴</div>
+            <div class="model-name">${name.replace('Kukirin_', '')}</div>
+          `;
+          card.addEventListener('click', () => {
+            selectedModels.has(name) ? selectedModels.delete(name) : selectedModels.add(name);
+            updateAll();
+          });
+          gridEl.appendChild(card);
+        });
+      }
+
+      function updateCount() {
+        document.getElementById('selectedCount').textContent = selectedModels.size;
+      }
+
+      function updateAll() {
+        renderGrid();
+        updateCount();
+        renderTable();
+      }
+
+      function formatLabel(key) {
+        return key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      }
+
+      function getCategory(crit) {
+        const map = {
+          performance: ['vitesse_maximale','acceleration_0_25','puissance_moteur_nominale','puissance_moteur_maximale','couple_moteur','nombre_de_moteurs'],
+          batterie: ['autonomie','capacite_batterie','tension_batterie','temps_de_charge','type_de_chargeur'],
+          physique: ['poids_total','dimensions_pliée','dimensions_deployee','materiau_du_chassis','portabilite'],
+          securite: ['type_frein_avant','type_frein_arriere','distance_de_freinage','frein_regeneratif','eclairage_avant','eclairage_arriere'],
+          equipement: ['suspension_avant','suspension_arriere','type_de_pneus','type_affichage','connectivite_application'],
+          prix: ['prix','garantie']
+        };
+        for (let [cat, arr] of Object.entries(map)) {
+          if (arr.includes(crit)) return cat;
+        }
+        return 'autre';
+      }
+
+      function renderTable() {
+        const tableHead = document.querySelector('#comparisonTable thead');
+        const tableBody = document.querySelector('#comparisonTable tbody');
+        const emptyState = document.getElementById('emptyState');
+        
+        if (selectedModels.size === 0) {
+          tableHead.innerHTML = '';
+          tableBody.innerHTML = '';
+          emptyState.style.display = 'block';
+          return;
+        }
+        emptyState.style.display = 'none';
+        
+        const selectedArray = Array.from(selectedModels);
+        tableHead.innerHTML = `<tr><th>Critère</th>${selectedArray.map(m => `<th>${m.replace('Kukirin_', '')}</th>`).join('')}</tr>`;
+        
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const activeCat = document.querySelector('.filter-tag.active')?.dataset.category || 'all';
+        
+        const filtered = criteria.filter(c => {
+          const matchSearch = searchTerm === '' || formatLabel(c).toLowerCase().includes(searchTerm);
+          const cat = getCategory(c);
+          const matchCat = activeCat === 'all' || cat === activeCat;
+          return matchSearch && matchCat;
+        });
+        
+        tableBody.innerHTML = filtered.map(crit => {
+          const vals = selectedArray.map(m => scooters[m][crit] || '-');
+          return `<tr><td class="criterion-col">${formatLabel(crit)}</td>${vals.map(v => `<td>${v}</td>`).join('')}</tr>`;
+        }).join('');
+      }
+
+      // Filtres catégories
+      const catContainer = document.getElementById('categoryFilters');
+      const categories = ['all', 'performance', 'batterie', 'physique', 'securite', 'equipement', 'prix'];
+      categories.forEach(cat => {
+        const tag = document.createElement('span');
+        tag.className = `filter-tag ${cat === 'all' ? 'active' : ''}`;
+        tag.dataset.category = cat;
+        tag.textContent = cat === 'all' ? 'Tous' : cat.charAt(0).toUpperCase() + cat.slice(1);
+        tag.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+          tag.classList.add('active');
+          renderTable();
+        });
+        catContainer.appendChild(tag);
+      });
+
+      document.getElementById('searchInput').addEventListener('input', renderTable);
+      document.getElementById('selectAllBtn').addEventListener('click', () => {
+        modelNames.forEach(m => selectedModels.add(m));
+        updateAll();
+      });
+      document.getElementById('clearBtn').addEventListener('click', () => {
+        selectedModels.clear();
+        updateAll();
+      });
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        selectedModels.clear();
+        document.getElementById('searchInput').value = '';
+        document.querySelector('.filter-tag.active')?.classList.remove('active');
+        document.querySelector('.filter-tag[data-category="all"]')?.classList.add('active');
+        updateAll();
+      });
+      document.getElementById('compareBtn').addEventListener('click', () => {
+        if (selectedModels.size === 0) {
+          alert('Veuillez sélectionner au moins un modèle.');
+          return;
+        }
+        updateAll();
+        document.getElementById('tableSection').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      renderGrid();
+      updateCount();
+      renderTable();
+    })();
+  </script>
+</body>
+</html>

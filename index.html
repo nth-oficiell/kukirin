@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Trotinette | comparateur</title>
+  <title>Comparateur Trottinettes Électriques | Premium</title>
   <style>
     * {
       margin: 0;
@@ -17,7 +17,6 @@
       color: #1c1917;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     :root {
@@ -29,7 +28,6 @@
       --orange-500: #f97316;
       --orange-600: #ea580c;
       --orange-700: #c2410c;
-      --orange-800: #9a3412;
       --stone-50: #fafaf9;
       --stone-100: #f5f5f4;
       --stone-200: #e7e5e4;
@@ -41,15 +39,13 @@
       --stone-800: #292524;
       --stone-900: #1c1917;
       --white: #ffffff;
-      --black: #0c0a09;
       --radius-2xl: 2rem;
       --radius-xl: 1.5rem;
       --radius-lg: 1rem;
       --radius-md: 0.75rem;
-      --radius-sm: 0.5rem;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.02);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05);
       --shadow-glow: 0 0 30px rgba(249,115,22,0.2);
     }
 
@@ -59,7 +55,6 @@
       padding: 1.5rem 2rem;
     }
 
-    /* Header premium */
     .header {
       display: flex;
       align-items: center;
@@ -72,31 +67,30 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
-    .logo-img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 6px rgba(249,115,22,0.3));
-      transition: transform 0.3s ease;
-    }
-
-    .logo-img:hover {
-      transform: scale(1.05);
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: var(--shadow-glow);
     }
 
     .logo-text {
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       letter-spacing: -0.3px;
       color: var(--stone-900);
     }
 
     .logo-text span {
       color: var(--orange-500);
-      font-weight: 800;
     }
 
     .badge-selection {
@@ -117,7 +111,6 @@
       font-size: 1.1rem;
     }
 
-    /* Section titre */
     .section-header {
       display: flex;
       align-items: center;
@@ -154,27 +147,25 @@
       background: var(--orange-50);
     }
 
-    /* Grille de sélection style cartes */
     .scooter-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
       gap: 0.8rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .scooter-card {
       background: var(--white);
       border: 2px solid var(--stone-200);
       border-radius: var(--radius-xl);
-      padding: 1.2rem 1rem;
+      padding: 1.3rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.6rem;
       cursor: pointer;
       transition: all 0.25s ease;
       position: relative;
-      overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
 
@@ -192,14 +183,14 @@
     }
 
     .scooter-card .card-icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       background: var(--stone-100);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       transition: 0.2s;
     }
 
@@ -213,14 +204,15 @@
       font-size: 0.9rem;
       color: var(--stone-800);
       text-align: center;
+      line-height: 1.3;
     }
 
     .scooter-card .check-circle {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 22px;
-      height: 22px;
+      top: 10px;
+      right: 10px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       border: 2px solid var(--stone-300);
       background: white;
@@ -238,56 +230,30 @@
       color: white;
     }
 
-    /* Barre d'action */
-    .action-bar {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-
     .btn {
-      padding: 0.75rem 1.8rem;
+      padding: 0.7rem 1.6rem;
       border-radius: 3rem;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       border: none;
       cursor: pointer;
       transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
       background: var(--white);
       border: 1.5px solid var(--stone-200);
       color: var(--stone-700);
     }
 
-    .btn-primary {
-      background: var(--orange-500);
-      border-color: var(--orange-500);
-      color: white;
-      box-shadow: 0 4px 10px rgba(249,115,22,0.25);
-    }
-
-    .btn-primary:hover {
-      background: var(--orange-600);
-      border-color: var(--orange-600);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(249,115,22,0.3);
-    }
-
     .btn-outline:hover {
       background: var(--stone-50);
-      border-color: var(--stone-400);
     }
 
-    /* Table */
     .table-wrapper {
       background: var(--white);
       border-radius: var(--radius-2xl);
       box-shadow: var(--shadow-lg);
       border: 1px solid var(--stone-200);
       overflow: hidden;
+      margin-top: 1rem;
     }
 
     .table-toolbar {
@@ -396,23 +362,21 @@
 </head>
 <body>
   <div class="container">
-    <!-- Header avec logo -->
     <header class="header">
       <div class="logo">
-        <img src="./kukirin.png" alt="Kukirin Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="logo-text" style="display: none;">Trotinette<span>Comparator</span></div>
-        <div class="logo-text">Trotinette<span>Comparator</span></div>
+        <div class="logo-icon">🛴</div>
+        <div class="logo-text">Comparateur<span>Trottinettes</span></div>
       </div>
       <div class="badge-selection">
-        <span>🛴</span> <strong id="selectedCount">0</strong> / <span id="totalModels">0</span> modèles
+        <span>📊</span> <strong id="selectedCount">0</strong> / <span id="totalModels">0</span> modèles
       </div>
     </header>
 
     <div class="section-header">
-      <div class="section-title">Sélectionnez les trottinettes</div>
+      <div class="section-title">Sélectionnez les trottinettes à comparer</div>
       <div class="quick-actions">
         <button class="btn-text" id="selectAllBtn">Tout sélectionner</button>
-        <button class="btn-text" id="clearBtn">Effacer</button>
+        <button class="btn-text" id="clearBtn">Effacer la sélection</button>
       </div>
     </div>
 
@@ -432,8 +396,8 @@
           <tbody></tbody>
         </table>
       </div>
-      <div id="emptyState" class="empty-placeholder" style="display: none;">
-        🛴 Sélectionnez des modèles pour afficher la comparaison détaillée.
+      <div id="emptyState" class="empty-placeholder">
+        🛴 Sélectionnez des modèles ci-dessus pour afficher la comparaison détaillée.
       </div>
     </div>
   </div>
@@ -458,8 +422,8 @@
           card.className = `scooter-card ${selectedModels.has(name) ? 'selected' : ''}`;
           card.innerHTML = `
             <div class="check-circle">✓</div>
-            <div class="card-icon">🛴</div>
-            <div class="model-name">${name.replace('Kukirin_', '')}</div>
+            <div class="card-icon">⚡</div>
+            <div class="model-name">${name.replace(/Kukirin_/g, '')}</div>
           `;
           card.addEventListener('click', () => {
             selectedModels.has(name) ? selectedModels.delete(name) : selectedModels.add(name);
@@ -512,7 +476,7 @@
         emptyState.style.display = 'none';
         
         const selectedArray = Array.from(selectedModels);
-        tableHead.innerHTML = `<tr><th>Critère</th>${selectedArray.map(m => `<th>${m.replace('Kukirin_', '')}</th>`).join('')}</tr>`;
+        tableHead.innerHTML = `<tr><th>Critère</th>${selectedArray.map(m => `<th>${m.replace(/Kukirin_/g, '')}</th>`).join('')}</tr>`;
         
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         const activeCat = document.querySelector('.filter-tag.active')?.dataset.category || 'all';
@@ -530,7 +494,6 @@
         }).join('');
       }
 
-      // Filtres catégories
       const catContainer = document.getElementById('categoryFilters');
       const categories = ['all', 'performance', 'batterie', 'physique', 'securite', 'equipement', 'prix'];
       categories.forEach(cat => {
@@ -554,21 +517,6 @@
       document.getElementById('clearBtn').addEventListener('click', () => {
         selectedModels.clear();
         updateAll();
-      });
-      document.getElementById('resetBtn').addEventListener('click', () => {
-        selectedModels.clear();
-        document.getElementById('searchInput').value = '';
-        document.querySelector('.filter-tag.active')?.classList.remove('active');
-        document.querySelector('.filter-tag[data-category="all"]')?.classList.add('active');
-        updateAll();
-      });
-      document.getElementById('compareBtn').addEventListener('click', () => {
-        if (selectedModels.size === 0) {
-          alert('Veuillez sélectionner au moins un modèle.');
-          return;
-        }
-        updateAll();
-        document.getElementById('tableSection').scrollIntoView({ behavior: 'smooth' });
       });
 
       renderGrid();
